@@ -12,7 +12,7 @@ const Home = () => {
     const trafficLightStyle = {
         display: "inline-block",
         width: "100px",
-        height: "250px",
+        height: "320px",
         backgroundColor: "#333",
         borderRadius: "10px",
         padding: "10px",
@@ -32,11 +32,11 @@ const Home = () => {
         boxShadow: "0 0 0px rgba(255, 255, 255, 0.5)" //Efecto de resplandor por defecto
     };
 
-    // Estilos para cada color específico
+    //estilos para cada color del semaforo
     const getLightStyle = (color) => ({
         ...lightStyle,
         backgroundColor: color,
-        boxShadow: activeLight === color ? `0 0 40px ${color}` : lightStyle.boxShadow //Efecto de resplandor
+        boxShadow: activeLight === color ? `0 0 60px ${color}` : lightStyle.boxShadow //Efecto de resplandor
     });
 
     return (
@@ -47,8 +47,8 @@ const Home = () => {
                     onClick={() => handleClick("red")}
                 ></button>
                 <button
-                    style={getLightStyle("yellow")}
-                    onClick={() => handleClick("yellow")}
+                    style={getLightStyle("orange")}
+                    onClick={() => handleClick("orange")}
                 ></button>
                 <button
                     style={getLightStyle("green")}
