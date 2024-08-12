@@ -1,26 +1,62 @@
-import React from "react";
-
-//include images into your bundle
-import rigoImage from "../../img/rigo-baby.jpg";
+import React, { useState } from "react";
 
 //create your first component
 const Home = () => {
-	return (
-		<div className="text-center">
-			<h1 className="text-center mt-5">Hello Rigo!</h1>
-			<p>
-				<img src={rigoImage} />
-			</p>
-			<a href="#" className="btn btn-success">
-				If you see this green button... bootstrap is working...
-			</a>
-			<p>
-				Made by{" "}
-				<a href="http://www.4geeksacademy.com">4Geeks Academy</a>, with
-				love!
-			</p>
-		</div>
-	);
+    const [activeLight, setActiveLight] = useState(null);
+
+    const handleClick = (light) => {
+        setActiveLight(light);
+    };
+
+    //estilos para el semáforo
+    const trafficLightStyle = {
+        display: "inline-block",
+        width: "100px",
+        height: "250px",
+        backgroundColor: "#333",
+        borderRadius: "10px",
+        padding: "10px",
+        position: "relative",
+        textAlign: "center"
+    };
+
+    //estilos base para las luces del semáforo
+    const lightStyle = {
+        width: "80px",
+        height: "80px",
+        borderRadius: "50%",
+        margin: "10px auto",
+        border: "2px solid #000",
+        backgroundColor: "#222",
+        cursor: "pointer",
+        boxShadow: "0 0 0px rgba(255, 255, 255, 0.5)" //Efecto de resplandor por defecto
+    };
+
+    // Estilos para cada color específico
+    const getLightStyle = (color) => ({
+        ...lightStyle,
+        backgroundColor: color,
+        boxShadow: activeLight === color ? `0 0 40px ${color}` : lightStyle.boxShadow //Efecto de resplandor
+    });
+
+    return (
+        <div className="text-center">
+            <div style={trafficLightStyle}>
+                <button
+                    style={getLightStyle("red")}
+                    onClick={() => handleClick("red")}
+                ></button>
+                <button
+                    style={getLightStyle("yellow")}
+                    onClick={() => handleClick("yellow")}
+                ></button>
+                <button
+                    style={getLightStyle("green")}
+                    onClick={() => handleClick("green")}
+                ></button>
+            </div>
+        </div>
+    );
 };
 
 export default Home;
